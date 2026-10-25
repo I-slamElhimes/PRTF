@@ -63,3 +63,4 @@ yarn-error.log*
 #  site actually serves are committed under public/)
 /projects
 /references
+.claude/ 
