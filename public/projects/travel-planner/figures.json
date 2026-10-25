@@ -1,0 +1,79 @@
+[
+ {
+  "n": 1,
+  "slug": "fig-01-home-hero",
+  "caption": "Home page \u2014 hero banner and search bar",
+  "reportPage": 17,
+  "src": "/projects/travel-planner/fig-01-home-hero.jpg"
+ },
+ {
+  "n": 2,
+  "slug": "fig-02-popular-destinations",
+  "caption": "Home page \u2014 popular destinations",
+  "reportPage": 18,
+  "src": "/projects/travel-planner/fig-02-popular-destinations.jpg"
+ },
+ {
+  "n": 3,
+  "slug": "fig-03-destination-weather",
+  "caption": "Destination details \u2014 weather information",
+  "reportPage": 18,
+  "src": "/projects/travel-planner/fig-03-destination-weather.jpg"
+ },
+ {
+  "n": 4,
+  "slug": "fig-04-places-explore",
+  "caption": "Exploring a destination's tourist places",
+  "reportPage": 19,
+  "src": "/projects/travel-planner/fig-04-places-explore.jpg"
+ },
+ {
+  "n": 5,
+  "slug": "fig-05-register",
+  "caption": "Registration page",
+  "reportPage": 20,
+  "src": "/projects/travel-planner/fig-05-register.jpg"
+ },
+ {
+  "n": 6,
+  "slug": "fig-06-login",
+  "caption": "Login page",
+  "reportPage": 20,
+  "src": "/projects/travel-planner/fig-06-login.jpg"
+ },
+ {
+  "n": 7,
+  "slug": "fig-07-planning-create",
+  "caption": "Creating a new travel plan",
+  "reportPage": 21,
+  "src": "/projects/travel-planner/fig-07-planning-create.jpg"
+ },
+ {
+  "n": 8,
+  "slug": "fig-08-planning-edit",
+  "caption": "Editing a travel plan",
+  "reportPage": 21,
+  "src": "/projects/travel-planner/fig-08-planning-edit.jpg"
+ },
+ {
+  "n": 9,
+  "slug": "fig-09-planning-list",
+  "caption": "List of travel plans",
+  "reportPage": 22,
+  "src": "/projects/travel-planner/fig-09-planning-list.jpg"
+ },
+ {
+  "n": 10,
+  "slug": "fig-10-planning-details",
+  "caption": "Plan details \u2014 day-by-day organisation",
+  "reportPage": 22,
+  "src": "/projects/travel-planner/fig-10-planning-details.jpg"
+ },
+ {
+  "n": 11,
+  "slug": "fig-11-profile",
+  "caption": "User profile and account management",
+  "reportPage": 23,
+  "src": "/projects/travel-planner/fig-11-profile.jpg"
+ }
+]

@@ -1,0 +1,598 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DESIGN SYSTEM — "Luminous Machine"
+   Derived from references/home.png: a deep violet-black ground, a luminous
+   lavender light source bleeding in from the right, and a single rose→violet
+   accent gradient reserved for what matters.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* Ground — violet-black, never neutral grey */
+  --color-void-950: #07040e;
+  --color-void-900: #0b0616;
+  --color-void-850: #100920;
+  --color-void-800: #150d2a;
+  --color-void-700: #1d1338;
+  --color-void-600: #2a1c4d;
+
+  /* Light side — the lavender bloom from the reference */
+  --color-mist-50: #f7f3fc;
+  --color-mist-100: #ece5f6;
+  --color-mist-200: #d8cfe8;
+  --color-mist-300: #bfb4d4;
+  --color-mist-400: #9c8fb5;
+  --color-mist-500: #7a6d93;
+  --color-mist-600: #584d70;
+
+  /* Accents — rose to violet, the only saturated colours in the system */
+  --color-rose-300: #f9a8d4;
+  --color-rose-400: #f472b6;
+  --color-rose-500: #ec4899;
+  --color-rose-600: #db2777;
+  --color-violet-300: #d8b4fe;
+  --color-violet-400: #c084fc;
+  --color-violet-500: #a855f7;
+  --color-violet-600: #8b5cf6;
+  --color-indigo-500: #7c5cf0;
+
+  /* Type */
+  --font-display: var(--font-jost), "Segoe UI", system-ui, sans-serif;
+  --font-script: var(--font-dancing), "Segoe Script", cursive;
+  --font-serif: var(--font-playfair), Georgia, serif;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME
+   Not "the dark theme with a white background". The ground becomes a pale
+   lavender dawn, the text ramp inverts, and the glass, glow and accents are
+   retuned so the futuristic identity survives the switch.
+   Overriding the same custom properties means every Tailwind utility built
+   from them (bg-void-900, text-mist-400 …) follows automatically.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root[data-theme="light"] {
+  /* Ground — lavender dawn instead of violet-black */
+  --color-void-950: #f3effb;
+  --color-void-900: #ebe4f7;
+  --color-void-850: #e4dbf3;
+  --color-void-800: #dbd0ef;
+  --color-void-700: #cfc1e9;
+  --color-void-600: #bcaae0;
+
+  /* Text ramp — inverted, kept violet rather than neutral grey */
+  --color-mist-50: #1b0f33;
+  --color-mist-100: #251545;
+  --color-mist-200: #322058;
+  --color-mist-300: #453070;
+  --color-mist-400: #63508f;
+  --color-mist-500: #8271a8;
+  --color-mist-600: #a294c0;
+
+  /* Accents — deepened so they hold contrast on a light ground */
+  --color-rose-300: #db2777;
+  --color-rose-400: #d61f6f;
+  --color-rose-500: #be185d;
+  --color-violet-300: #7c3aed;
+  --color-violet-400: #7028e0;
+  --color-violet-500: #6320d0;
+
+  /* Structure */
+  --hairline: rgba(49, 18, 92, 0.11);
+  --hairline-strong: rgba(49, 18, 92, 0.2);
+  --glass-tint: rgba(255, 255, 255, 0.58);
+  --glass-edge: rgba(255, 255, 255, 0.9);
+  --glow-strength: 0.4;
+
+  color-scheme: light;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BASE
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@layer base {
+  :root {
+    --hairline: rgba(255, 255, 255, 0.08);
+    --hairline-strong: rgba(255, 255, 255, 0.16);
+    --rail-w: 0px;
+    color-scheme: dark;
+  }
+
+  @media (min-width: 1280px) {
+    :root {
+      --rail-w: 76px;
+    }
+  }
+
+  * {
+    border-color: var(--hairline);
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  body {
+    background-color: var(--color-void-950);
+    color: var(--color-mist-100);
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 200;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgba(236, 72, 153, 0.3);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose-400);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-void-950);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-void-600);
+    border: 3px solid var(--color-void-950);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-mist-600);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PRIMITIVES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@layer components {
+  /* Page gutter, offset by the fixed rail on large screens. */
+  .shell {
+    width: 100%;
+    margin-inline: auto;
+    max-width: 90rem;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .shell {
+      padding-inline: 2.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .shell {
+      padding-left: calc(var(--rail-w) + 2.5rem);
+      padding-right: 3rem;
+    }
+  }
+
+  .section-y {
+    padding-block: 5.5rem;
+  }
+  @media (min-width: 768px) {
+    .section-y {
+      padding-block: 8rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .section-y {
+      padding-block: 10rem;
+    }
+  }
+
+  /* Wide-tracked micro-label — the reference's section eyebrows. */
+  .eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-mist-500);
+  }
+
+  /* The handwritten accent used on one word per heading. Never more. */
+  .script {
+    font-family: var(--font-script);
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    line-height: 1.35;
+    background: linear-gradient(100deg, var(--color-rose-400) 0%, var(--color-violet-400) 65%, var(--color-violet-300) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Descenders on script faces clip without room to breathe. */
+    padding-block: 0.12em;
+  }
+
+  .serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  /* Translucent panel — the floating "MA DIRECTION" card in the reference.
+     One blur value only; glass is an accent here, not the whole interface. */
+  .panel {
+    background: linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.07) 0%,
+      rgba(255, 255, 255, 0.025) 45%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .panel-solid {
+    background: linear-gradient(165deg, var(--color-void-850), var(--color-void-900));
+    border: 1px solid var(--hairline);
+  }
+
+  /* Accent gradient fill for primary actions. */
+  /* Liquid-glass node used by the orbital core and the skill cards.
+     Layered rather than a single translucent fill: a tinted body, a bright
+     top edge, an inner sheen and an outer lift. */
+  .glass-node {
+    position: relative;
+    background:
+      linear-gradient(150deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.03) 42%, rgba(255, 255, 255, 0.08));
+    border: 1px solid var(--hairline-strong);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.28),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+      0 18px 40px -22px rgba(10, 2, 30, 0.9);
+    transition:
+      border-color 0.5s var(--ease-out-expo),
+      transform 0.5s var(--ease-out-expo),
+      box-shadow 0.5s var(--ease-out-expo);
+  }
+
+  :root[data-theme="light"] .glass-node {
+    background:
+      linear-gradient(150deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.45) 45%, rgba(255, 255, 255, 0.7));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      0 18px 40px -24px rgba(60, 20, 110, 0.45);
+  }
+
+  .glass-node:hover {
+    transform: translateY(-2px);
+  }
+
+  /* ── Hero portrait ─────────────────────────────────────────────────────
+     The plate must read as something emerging FROM the environment, not as a
+     picture sitting next to the text. Two masks do the work: a horizontal
+     feather that dissolves the left edge into the copy, and a radial vignette
+     that softens the remaining three. Because they are masks (not overlays)
+     there is no rectangle boundary left to see at any theme or breakpoint. */
+  .hero-portrait {
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 14%, #000 42%, #000 100%),
+      radial-gradient(115% 88% at 62% 46%, #000 40%, rgba(0, 0, 0, 0.55) 68%, transparent 92%);
+    mask-image:
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.35) 14%, #000 42%, #000 100%),
+      radial-gradient(115% 88% at 62% 46%, #000 40%, rgba(0, 0, 0, 0.55) 68%, transparent 92%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  /* Under lg the plate sits behind the copy, so it feathers from the top
+     instead of the side and drops back to let the text carry. */
+  @media (max-width: 1023px) {
+    .hero-portrait {
+      -webkit-mask-image: radial-gradient(120% 70% at 68% 30%, #000 22%, rgba(0, 0, 0, 0.4) 58%, transparent 84%);
+      mask-image: radial-gradient(120% 70% at 68% 30%, #000 22%, rgba(0, 0, 0, 0.4) 58%, transparent 84%);
+      opacity: 0.5;
+    }
+  }
+
+  /* Light theme: lift the plate so it reads as luminous mist rather than a
+     dark photograph dropped onto a pale ground. */
+  :root[data-theme="light"] .hero-portrait {
+    filter: brightness(1.16) saturate(0.92) contrast(0.94);
+  }
+
+  .grad-accent {
+    background-image: linear-gradient(100deg, var(--color-rose-500), var(--color-violet-500));
+  }
+
+  .text-accent {
+    background: linear-gradient(100deg, var(--color-rose-400), var(--color-violet-400));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline halo used on hover for cards and nodes. */
+  .halo {
+    box-shadow:
+      0 0 0 1px rgba(236, 72, 153, 0.25),
+      0 0 40px -8px rgba(168, 85, 247, 0.45);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   UTILITIES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@layer utilities {
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .gpu {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   AMBIENT KEYFRAMES
+   Loops that should not cost a React render or a rAF callback.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -12px, 0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.6;
+  }
+  70%,
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: -200% 50%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIQUID CLIMATE
+   Each section has its own atmosphere. Registering these as <color> custom
+   properties lets the browser INTERPOLATE them, so scrolling between sections
+   flows the whole aurora from one climate to the next rather than cutting.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@property --world-a {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(124, 92, 240, 0.16);
+}
+@property --world-b {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(236, 72, 153, 0.13);
+}
+@property --world-c {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: rgba(168, 85, 247, 0.13);
+}
+
+:root {
+  transition:
+    --world-a 1.6s var(--ease-out-expo),
+    --world-b 1.6s var(--ease-out-expo),
+    --world-c 1.6s var(--ease-out-expo);
+}
+
+/* Hero — lavender dawn */
+:root[data-world="hero"] {
+  --world-a: rgba(150, 120, 245, 0.18);
+  --world-b: rgba(236, 130, 190, 0.14);
+  --world-c: rgba(168, 85, 247, 0.13);
+}
+/* About — deeper violet, the story settles */
+:root[data-world="about"] {
+  --world-a: rgba(124, 70, 235, 0.2);
+  --world-b: rgba(196, 90, 190, 0.13);
+  --world-c: rgba(120, 60, 220, 0.15);
+}
+/* Skills — technological blue */
+:root[data-world="skills"] {
+  --world-a: rgba(80, 120, 250, 0.19);
+  --world-b: rgba(150, 100, 245, 0.14);
+  --world-c: rgba(60, 150, 240, 0.13);
+}
+/* Work — digital magenta */
+:root[data-world="work"] {
+  --world-a: rgba(180, 70, 235, 0.2);
+  --world-b: rgba(240, 80, 160, 0.15);
+  --world-c: rgba(140, 60, 230, 0.14);
+}
+/* Intelligence — the brightest, most electric climate */
+:root[data-world="intelligence"] {
+  --world-a: rgba(120, 90, 255, 0.24);
+  --world-b: rgba(220, 120, 255, 0.17);
+  --world-c: rgba(90, 170, 255, 0.15);
+}
+/* Experience — calm and elegant */
+:root[data-world="experience"] {
+  --world-a: rgba(110, 90, 200, 0.15);
+  --world-b: rgba(190, 120, 210, 0.11);
+  --world-c: rgba(130, 100, 210, 0.12);
+}
+/* Credentials — quiet, so the list reads */
+:root[data-world="credentials"] {
+  --world-a: rgba(100, 95, 190, 0.14);
+  --world-b: rgba(170, 110, 210, 0.1);
+  --world-c: rgba(120, 90, 200, 0.11);
+}
+/* Contact — deep and immersive, the end of the world */
+:root[data-world="contact"] {
+  --world-a: rgba(150, 60, 240, 0.24);
+  --world-b: rgba(245, 90, 170, 0.19);
+  --world-c: rgba(90, 60, 230, 0.18);
+}
+
+/* Light theme keeps the same climates, at a fraction of the strength so the
+   pale ground stays pale instead of turning muddy. */
+:root[data-theme="light"] {
+  --world-a: rgba(150, 110, 245, 0.16);
+  --world-b: rgba(240, 140, 200, 0.13);
+  --world-c: rgba(140, 120, 250, 0.12);
+}
+:root[data-theme="light"][data-world="skills"] {
+  --world-a: rgba(90, 140, 250, 0.15);
+  --world-b: rgba(170, 130, 250, 0.12);
+}
+:root[data-theme="light"][data-world="work"] {
+  --world-a: rgba(200, 110, 245, 0.15);
+  --world-b: rgba(250, 130, 190, 0.13);
+}
+:root[data-theme="light"][data-world="intelligence"] {
+  --world-a: rgba(140, 120, 255, 0.18);
+  --world-b: rgba(225, 150, 255, 0.14);
+}
+:root[data-theme="light"][data-world="contact"] {
+  --world-a: rgba(170, 100, 250, 0.18);
+  --world-b: rgba(250, 130, 190, 0.16);
+}
+
+/* A very long, non-integer-ratio drift so the field never visibly repeats. */
+@keyframes drift-wide {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(-4%, 3%, 0) scale(1.08);
+  }
+  66% {
+    transform: translate3d(3%, -2.5%, 0) scale(0.96);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Signal travelling along an SVG trace via offset-path. */
+@keyframes offset-travel {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+/* Theme swap: cross-fade colour only, and only when motion is welcome. */
+:root:not([data-theme-instant]) body,
+:root:not([data-theme-instant]) .glass-node,
+:root:not([data-theme-instant]) .panel {
+  transition:
+    background-color 0.55s var(--ease-out-expo),
+    border-color 0.55s var(--ease-out-expo),
+    color 0.55s var(--ease-out-expo);
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   The universe holds still; every piece of content stays reachable.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
